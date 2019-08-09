@@ -52,7 +52,7 @@ export default class Home extends Component {
             >
               <ListGroupItem>
                 <h4>
-                  <b>{"\uFF0B"}</b> Create a new note
+                  <b>{"\uFF0B"}</b> Add a new trip
                 </h4>
               </ListGroupItem>
             </LinkContainer>
@@ -62,8 +62,8 @@ export default class Home extends Component {
   renderLander() {
     return (
       <div className="lander">
-        <h1>Scratch</h1>
-        <p>A simple note taking app</p>
+        <h1>Tripstytch</h1>
+        <p>An app to keep track of your busy travel schedule</p>
         <div>
           <Link to="/login" className="btn btn-info btn-lg">
             Login
@@ -79,7 +79,7 @@ export default class Home extends Component {
   renderNotes() {
     return (
       <div className="notes">
-        <PageHeader>Your Notes</PageHeader>
+        <PageHeader>Your Trips</PageHeader>
         <ListGroup>
           {!this.state.isLoading && this.renderNotesList(this.state.notes)}
         </ListGroup>
