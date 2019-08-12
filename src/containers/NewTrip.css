@@ -1,0 +1,8 @@
+.NewTrip form {
+  padding-bottom: 15px;
+}
+
+.NewTrip form textarea {
+  height: 300px;
+  font-size: 24px;
+}
