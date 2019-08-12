@@ -21,8 +21,8 @@ export default class Home extends Component {
     }
 
     try {
-      const notes = await this.notes();
-      this.setState({ notes });
+      const trips = await this.trips();
+      this.setState({ trips });
     } catch (e) {
       alert(e);
     }
@@ -30,25 +30,25 @@ export default class Home extends Component {
     this.setState({ isLoading: false });
   }
 
-  notes() {
-    return API.get("notes", "/notes");
+  trips() {
+    return API.get("trips", "/trips");
   }
 
-  renderNotesList(notes) {
-    return [{}].concat(notes).map(
-      (note, i) =>
+  renderNotesList(trips) {
+    return [{}].concat(trips).map(
+      (trip, i) =>
         i !== 0
           ? <LinkContainer
-              key={note.noteId}
-              to={`/notes/${note.noteId}`}
+              key={trip.tripId}
+              to={`/trips/${trip.tripId}`}
             >
-              <ListGroupItem header={note.content.trim().split("\n")[0]}>
-                {"Created: " + new Date(note.createdAt).toLocaleString()}
+              <ListGroupItem header={trip.tripName.trim().split("\n")[0]}>
+                {"Created: " + new Date(trip.createdAt).toLocaleString()}
               </ListGroupItem>
             </LinkContainer>
           : <LinkContainer
               key="new"
-              to="/notes/new"
+              to="/trips/new"
             >
               <ListGroupItem>
                 <h4>
@@ -76,12 +76,12 @@ export default class Home extends Component {
     );
   }
 
-  renderNotes() {
+  renderTrips() {
     return (
-      <div className="notes">
+      <div className="trips">
         <PageHeader>Your Trips</PageHeader>
         <ListGroup>
-          {!this.state.isLoading && this.renderNotesList(this.state.notes)}
+          {!this.state.isLoading && this.renderTripsList(this.state.trips)}
         </ListGroup>
       </div>
     );
@@ -90,7 +90,7 @@ export default class Home extends Component {
   render() {
     return (
       <div className="Home">
-        {this.props.isAuthenticated ? this.renderNotes() : this.renderLander()}
+        {this.props.isAuthenticated ? this.renderTrips() : this.renderLander()}
       </div>
     );
   }
